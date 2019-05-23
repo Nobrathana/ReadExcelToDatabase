@@ -23,44 +23,85 @@ namespace ReadExcelToDatabase
         }
         public Boolean ImportToDB()
         {
+
             Process[] oldProcess = Process.GetProcessesByName("Excel");
             var db = new AttendanceEntities();
             try
             {
                 Application excelApp = new Application();
                 Workbook excelWorkbook = excelApp.Workbooks.Open(filePath);
-                Worksheet excelWorkSheet = excelWorkbook.Sheets[4];
+                Worksheet excelWorkSheet = excelWorkbook.Sheets[1];
                 Range exRange = excelWorkSheet.UsedRange;
                 int rowCount = exRange.Rows.Count;
                 int colCount = exRange.Columns.Count;
 
                 for (int i = 2; i <= rowCount; i++)
                 {
-                    string siteLocation = exRange[i, 2].Value2;
-                    string siteManagerName = exRange[i, 3].Value2;
-                    decimal siteAllowance = Convert.ToDecimal(exRange[i, 7].Value2);
-                    string project = exRange[i, 5].Value2;
-                    string description = exRange[i, 6].Value2;
+                    string LGT_ID = exRange[i, 1].Value2;
+                    string IDCard = exRange[i, 2].Value2;
+                    string firstName = exRange[i, 3].Value2;
+                    string lastName = exRange[i, 4].Value2;
+                    string khmerName = exRange[i, 5].Value2;
+                    string khmerSureName = exRange[i, 6].Value2;
+                    string gender = exRange[i, 7].Value2;
+                    DateTime dob = ConvertToDateTime(Convert.ToString(exRange[i, 8].Value2));
+                    string email = exRange[i, 9].Value2;
+                    string phoneNumber = exRange[i, 10].Value2;
+                    string emergencyContact = exRange[i, 11].Value2;
+                    string maritalStatus = exRange[i, 12].Value2;
+                    int child = Convert.ToInt16(exRange[i, 13].Value2);
+                    string presentAddress = exRange[i, 14].Value2;
+                    string permanentAddress = exRange[i, 15].Value2;
+                    string levelOfEducation = exRange[i, 16].Value2;
+                    string fieldOfEducation = exRange[i, 17].Value2;
+                    string spouseName = exRange[i, 18].Value2;
+                    string spouseOccupation = exRange[i, 19].Value2;
+                    string recruitmentBase = exRange[i, 20].Value2;
+                    string workingStaus = exRange[i, 21].Value2;
+                    double basicSalary = exRange[i, 22].Value2;
+                    string workType = exRange[i, 23].Value2;
+                    DateTime startDate = ConvertToDateTime(Convert.ToString(exRange[i, 24].Value2));
+                    string position = exRange[i, 25].Value2;
+                    string site = exRange[i, 26].Value2;
+                    string bankAccount = exRange[i, 27].Value2;
+                    double lgtFund = exRange[i, 28].Value2;
 
 
-                    if (!string.IsNullOrEmpty(siteLocation))
+                    if (!string.IsNullOrEmpty(LGT_ID))
                     {
-                        var userName = siteManagerName.Split(' ')[1];
+                        if(!db.EmployeeMasters.Any(x => x.EmployeeID.Equals(LGT_ID)))
+                        {
+                            EmployeeMaster emp = new EmployeeMaster();
+                            emp.EmployeeID = LGT_ID;
+                            emp.created_at = DateTime.Now;
+                            emp.created_by = "System";
+                            emp.status = true;
+                            emp.FirstName = firstName;
+                            emp.LastName = lastName;
+                            emp.FirstNameKH = khmerName;
+                            emp.LastNameKH = khmerSureName;
+                            emp.gender = gender == "M" ? "Male" : "Female";
+                            emp.dob = dob;
+                            emp.Email = email;
+                            emp.PhoneNumber = phoneNumber;
+                            emp.EmergencyPhoneNumber = emergencyContact;
+                            emp.MarritalStatus = string.IsNullOrEmpty(maritalStatus) ? "Single" : "Married";
+                            emp.ChildNumber = child;
+                            emp.PresentAddress = presentAddress;
+                            emp.PermanetAddress = permanentAddress;
+                            emp.FieldofEducation = fieldOfEducation;
+                            emp.LevelEducation = levelOfEducation;
+                            emp.SpouseGuardian = spouseName;
+                            emp.SpouseOccupation = spouseOccupation;
+                            emp.RecruitmentBase = 1;
+                            emp.Working_Status = "Working";
+                            emp.BankAccount = bankAccount;
+                            emp.LGTFund = lgtFund.ToString();
+                            db.EmployeeMasters.Add(emp);
+                          //  db.SaveChanges();
 
-                        if (!db.Sites.Any(x => x.name.Equals(siteLocation)))
-                        { 
-                            Site obj = new Site();
-                            obj.name = siteLocation;
-                            obj.location = siteLocation;
-                            obj.Province_FK = 1;
-                            obj.siteAllowance = siteAllowance;
-                            obj.description = description;
-                            obj.Owner = db.AspNetUsers.Where(x => x.status == true && x.UserName.Equals(userName)).Select(x => x.Id).FirstOrDefault();
-                            if (!string.IsNullOrEmpty(project))
-                                obj.project_fk = db.tb_Project.FirstOrDefault(x => x.sonumber.Equals(project)).id;
-                            obj.status = true;
-                            db.Sites.Add(obj);
-                            db.SaveChanges();
+                            Contract con = new Contract();
+  
                         }
                     }
                 }
