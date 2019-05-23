@@ -1,0 +1,871 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Coca_Attendance_DbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="Position" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectManager" Type="Boolean" />
+    <Property Name="Project_fk" Type="Int32" />
+    <Property Name="SiteManager" Type="Boolean" />
+    <Property Name="Site_fk" Type="Int32" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="Contract">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="startDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="endDate" Type="DateTime" Precision="3" />
+    <Property Name="grossSalary" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="created_by" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="updated_by" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+    <Property Name="UserID_Fk" Type="Int32" />
+    <Property Name="siteFK" Type="Int32" />
+    <Property Name="PositionFK" Type="Int32" />
+    <Property Name="FixAllowance" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Gas" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Tel" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Position" Relationship="Self.fk_con_pos" FromRole="Contract" ToRole="Position" />
+    <NavigationProperty Name="EmployeeMaster" Relationship="Self.fk_emp_contract" FromRole="Contract" ToRole="EmployeeMaster" />
+    <NavigationProperty Name="Site" Relationship="Self.fk_site_con" FromRole="Contract" ToRole="Site" />
+  </EntityType>
+  <EntityType Name="EmployeeMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+    <Property Name="created_by" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="updated" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="Position" Type="Int32" />
+    <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ChildNumber" Type="Int32" />
+    <Property Name="dob" Type="DateTime" Precision="3" />
+    <Property Name="gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="project" Type="Int32" />
+    <Property Name="department" Type="Int32" />
+    <Property Name="FirstNameKH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LastNameKH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="EmergencyPhoneNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="MarritalStatus" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="PresentAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PermanetAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LevelEducation" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="FieldofEducation" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SpouseGuardian" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SpouseOccupation" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Working_Status" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="BankAccount" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="LGTFund" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IDCardNo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Gas" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Tel" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="NFFS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RecruitmentBase" Type="Int32" />
+    <Property Name="fixallowance" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="RTS_reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Contracts" Relationship="Self.fk_emp_contract" FromRole="EmployeeMaster" ToRole="Contract" />
+    <NavigationProperty Name="tb_Department" Relationship="Self.fk_department_emp" FromRole="EmployeeMaster" ToRole="tb_Department" />
+    <NavigationProperty Name="tb_OT_Detail" Relationship="Self.fk_emp_ot" FromRole="EmployeeMaster" ToRole="tb_OT_Detail" />
+    <NavigationProperty Name="tb_Payroll" Relationship="Self.fk_emp_payroll" FromRole="EmployeeMaster" ToRole="tb_Payroll" />
+    <NavigationProperty Name="tb_province" Relationship="Self.fk_emp_pro" FromRole="EmployeeMaster" ToRole="tb_province" />
+    <NavigationProperty Name="tb_file" Relationship="Self.fk_user_file" FromRole="EmployeeMaster" ToRole="tb_file" />
+  </EntityType>
+  <EntityType Name="ImportTracker">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Logger" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="ErrorMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Position">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="GP_FK" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Boolean" />
+    <NavigationProperty Name="Contracts" Relationship="Self.fk_con_pos" FromRole="Position" ToRole="Contract" />
+    <NavigationProperty Name="tb_Group_Position" Relationship="Self.fk_gp_p" FromRole="Position" ToRole="tb_Group_Position" />
+  </EntityType>
+  <EntityType Name="Site">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Owner" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="project_fk" Type="Int32" />
+    <Property Name="siteAllowance" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Province_FK" Type="Int32" />
+    <NavigationProperty Name="Contracts" Relationship="Self.fk_site_con" FromRole="Site" ToRole="Contract" />
+    <NavigationProperty Name="tb_Project" Relationship="Self.fk_pro_site" FromRole="Site" ToRole="tb_Project" />
+    <NavigationProperty Name="tb_province" Relationship="Self.fk_site_province" FromRole="Site" ToRole="tb_province" />
+  </EntityType>
+  <EntityType Name="tb_appraisal">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="score" Type="Decimal" Precision="18" Scale="1" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="monthAppraisal" Type="DateTime" Precision="3" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="created_by" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="empFK" Type="Int32" Nullable="false" />
+    <Property Name="OT_FK" Type="Int32" />
+    <NavigationProperty Name="tb_OT" Relationship="Self.fk_ot_pa" FromRole="tb_appraisal" ToRole="tb_OT" />
+  </EntityType>
+  <EntityType Name="tb_attendance">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="empID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fpID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="overtime_in" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="overtime_out" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="new_state" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ref_id" Type="Int32" />
+    <Property Name="attendance_date" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="tb_attendance_attachment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="created_by" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="SiteId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tb_customer">
+    <Key>
+      <PropertyRef Name="cus_id" />
+    </Key>
+    <Property Name="cus_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cus_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="cus_tel" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="cus_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tb_Department">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="EmployeeMasters" Relationship="Self.fk_department_emp" FromRole="tb_Department" ToRole="EmployeeMaster" />
+  </EntityType>
+  <EntityType Name="tb_file">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="filename" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fileext" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="filecode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="userID_fk" Type="Int32" />
+    <Property Name="filetype" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="EmployeeMaster" Relationship="Self.fk_user_file" FromRole="tb_file" ToRole="EmployeeMaster" />
+  </EntityType>
+  <EntityType Name="tb_fingerprint">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fp_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fp_ipaddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fp_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fp_location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fp_status" Type="Boolean" Nullable="false" />
+    <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+    <Property Name="site_fk" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tb_generate_type">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tb_Group_Position">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GP_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="Level" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gas" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Tel" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="FixAllowance" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="Positions" Relationship="Self.fk_gp_p" FromRole="tb_Group_Position" ToRole="Position" />
+  </EntityType>
+  <EntityType Name="tb_OT">
+    <Key>
+      <PropertyRef Name="OT_ID" />
+    </Key>
+    <Property Name="OT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Created_at" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Created_by" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="OT_Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Project_fk" Type="Int32" />
+    <Property Name="Site_fk" Type="Int32" />
+    <Property Name="PM_Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Hr_Approve" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="HR_Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GenerateType" Type="Int32" />
+    <Property Name="OT_Type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tb_appraisal" Relationship="Self.fk_ot_pa" FromRole="tb_OT" ToRole="tb_appraisal" />
+    <NavigationProperty Name="tb_OT_Detail" Relationship="Self.fk_ot_otdetail" FromRole="tb_OT" ToRole="tb_OT_Detail" />
+  </EntityType>
+  <EntityType Name="tb_OT_Detail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="M_Hours" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="A_Hours" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="OT_Hours" Type="Int32" />
+    <Property Name="createdat" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Emp_FK" Type="Int32" />
+    <Property Name="OT_FK" Type="Int32" />
+    <Property Name="Site_fk" Type="Int32" />
+    <Property Name="PM_remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="HR_remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="EmployeeMaster" Relationship="Self.fk_emp_ot" FromRole="tb_OT_Detail" ToRole="EmployeeMaster" />
+    <NavigationProperty Name="tb_OT" Relationship="Self.fk_ot_otdetail" FromRole="tb_OT_Detail" ToRole="tb_OT" />
+  </EntityType>
+  <EntityType Name="tb_Payroll">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="payroll_detaile_FK" Type="Int32" />
+    <Property Name="basicSalary" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="EmpDepartment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EmpSite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="empID_Fk" Type="Int32" />
+    <Property Name="TaxDeductible" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OTH" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ActualWork" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CashAllowance" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OtherCashAllowance" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Advance" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="BonusIncentive" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Deductale" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Site_FK" Type="Int32" />
+    <Property Name="TotalGrossBenefitThisMonth" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="PayrollDate" Type="DateTime" Precision="0" />
+    <Property Name="OTMoney" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="TaxOnTotalBenefit" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ThisMonthGrossSalary" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="EmployeeMaster" Relationship="Self.fk_emp_payroll" FromRole="tb_Payroll" ToRole="EmployeeMaster" />
+    <NavigationProperty Name="tb_PayrollDetail" Relationship="Self.fk_payrolldetail_payroll" FromRole="tb_Payroll" ToRole="tb_PayrollDetail" />
+  </EntityType>
+  <EntityType Name="tb_PayrollDetail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExchangeRate" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="created_by" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PaidBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="Tax" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="AccManag_Status" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="FinalPayroll_Status" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PayrollMonth" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AccManag_Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FinalPayroll_Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AccManag_Approvedby" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="FinalPayroll_Approvedby" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="GenerateType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="BonusIncentiveCheck" Type="Boolean" />
+    <NavigationProperty Name="tb_Payroll" Relationship="Self.fk_payrolldetail_payroll" FromRole="tb_PayrollDetail" ToRole="tb_Payroll" />
+  </EntityType>
+  <EntityType Name="tb_Project">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="pm_userid" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="startDate" Type="DateTime" Precision="3" />
+    <Property Name="endDate" Type="DateTime" Precision="3" />
+    <Property Name="pro_status" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="cus_fk" Type="Int32" />
+    <Property Name="sonumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Sites" Relationship="Self.fk_pro_site" FromRole="tb_Project" ToRole="Site" />
+  </EntityType>
+  <EntityType Name="tb_province">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="EmployeeMasters" Relationship="Self.fk_emp_pro" FromRole="tb_province" ToRole="EmployeeMaster" />
+    <NavigationProperty Name="Sites" Relationship="Self.fk_site_province" FromRole="tb_province" ToRole="Site" />
+  </EntityType>
+  <EntityType Name="tb_PublicHoliday">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="from" Type="DateTime" Precision="0" />
+    <Property Name="to" Type="DateTime" Precision="0" />
+    <Property Name="createdat" Type="DateTime" Precision="0" />
+    <Property Name="createdby" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="modifiedat" Type="DateTime" Precision="0" />
+    <Property Name="modifiedby" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="TimeSchedule">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="time" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AggregatedCounter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Key" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Value" Type="Int64" Nullable="false" />
+    <Property Name="ExpireAt" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Counter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Key" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Value" Type="Int16" Nullable="false" />
+    <Property Name="ExpireAt" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Hash">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Key" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Field" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ExpireAt" Type="DateTime" Precision="7" />
+  </EntityType>
+  <EntityType Name="Job">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StateId" Type="Int32" />
+    <Property Name="StateName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="InvocationData" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Arguments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ExpireAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="JobParameters" Relationship="Self.FK_HangFire_JobParameter_Job" FromRole="Job" ToRole="JobParameter" />
+    <NavigationProperty Name="States" Relationship="Self.FK_HangFire_State_Job" FromRole="Job" ToRole="State" />
+  </EntityType>
+  <EntityType Name="JobParameter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Job" Relationship="Self.FK_HangFire_JobParameter_Job" FromRole="JobParameter" ToRole="Job" />
+  </EntityType>
+  <EntityType Name="JobQueue">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobId" Type="Int32" Nullable="false" />
+    <Property Name="Queue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FetchedAt" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="List">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Key" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ExpireAt" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Schema">
+    <Key>
+      <PropertyRef Name="Version" />
+    </Key>
+    <Property Name="Version" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Server">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Data" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LastHeartbeat" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Set">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Key" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Score" Type="Double" Nullable="false" />
+    <Property Name="Value" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ExpireAt" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Reason" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Data" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Job" Relationship="Self.FK_HangFire_State_Job" FromRole="State" ToRole="Job" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_con_pos">
+    <End Role="Position" Type="Self.Position" Multiplicity="0..1" />
+    <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Position">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Contract">
+        <PropertyRef Name="PositionFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_emp_contract">
+    <End Role="EmployeeMaster" Type="Self.EmployeeMaster" Multiplicity="0..1" />
+    <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Contract">
+        <PropertyRef Name="UserID_Fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_site_con">
+    <End Role="Site" Type="Self.Site" Multiplicity="0..1" />
+    <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Site">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Contract">
+        <PropertyRef Name="siteFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_department_emp">
+    <End Role="tb_Department" Type="Self.tb_Department" Multiplicity="0..1" />
+    <End Role="EmployeeMaster" Type="Self.EmployeeMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_Department">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="EmployeeMaster">
+        <PropertyRef Name="department" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_emp_ot">
+    <End Role="EmployeeMaster" Type="Self.EmployeeMaster" Multiplicity="0..1" />
+    <End Role="tb_OT_Detail" Type="Self.tb_OT_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tb_OT_Detail">
+        <PropertyRef Name="Emp_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_emp_payroll">
+    <End Role="EmployeeMaster" Type="Self.EmployeeMaster" Multiplicity="0..1" />
+    <End Role="tb_Payroll" Type="Self.tb_Payroll" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tb_Payroll">
+        <PropertyRef Name="empID_Fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_emp_pro">
+    <End Role="tb_province" Type="Self.tb_province" Multiplicity="0..1" />
+    <End Role="EmployeeMaster" Type="Self.EmployeeMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_province">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="EmployeeMaster">
+        <PropertyRef Name="RecruitmentBase" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_user_file">
+    <End Role="EmployeeMaster" Type="Self.EmployeeMaster" Multiplicity="0..1" />
+    <End Role="tb_file" Type="Self.tb_file" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tb_file">
+        <PropertyRef Name="userID_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_gp_p">
+    <End Role="tb_Group_Position" Type="Self.tb_Group_Position" Multiplicity="0..1" />
+    <End Role="Position" Type="Self.Position" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_Group_Position">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Position">
+        <PropertyRef Name="GP_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_pro_site">
+    <End Role="tb_Project" Type="Self.tb_Project" Multiplicity="0..1" />
+    <End Role="Site" Type="Self.Site" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_Project">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Site">
+        <PropertyRef Name="project_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_site_province">
+    <End Role="tb_province" Type="Self.tb_province" Multiplicity="0..1" />
+    <End Role="Site" Type="Self.Site" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_province">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Site">
+        <PropertyRef Name="Province_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_ot_pa">
+    <End Role="tb_OT" Type="Self.tb_OT" Multiplicity="0..1" />
+    <End Role="tb_appraisal" Type="Self.tb_appraisal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_OT">
+        <PropertyRef Name="OT_ID" />
+      </Principal>
+      <Dependent Role="tb_appraisal">
+        <PropertyRef Name="OT_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_ot_otdetail">
+    <End Role="tb_OT" Type="Self.tb_OT" Multiplicity="0..1" />
+    <End Role="tb_OT_Detail" Type="Self.tb_OT_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_OT">
+        <PropertyRef Name="OT_ID" />
+      </Principal>
+      <Dependent Role="tb_OT_Detail">
+        <PropertyRef Name="OT_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_payrolldetail_payroll">
+    <End Role="tb_PayrollDetail" Type="Self.tb_PayrollDetail" Multiplicity="0..1" />
+    <End Role="tb_Payroll" Type="Self.tb_Payroll" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_PayrollDetail">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tb_Payroll">
+        <PropertyRef Name="payroll_detaile_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HangFire_JobParameter_Job">
+    <End Role="Job" Type="Self.Job" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="JobParameter" Type="Self.JobParameter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Job">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="JobParameter">
+        <PropertyRef Name="JobId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HangFire_State_Job">
+    <End Role="Job" Type="Self.Job" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="State" Type="Self.State" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Job">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="State">
+        <PropertyRef Name="JobId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="Coca_Attendance_DbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+    <EntitySet Name="Contracts" EntityType="Self.Contract" />
+    <EntitySet Name="EmployeeMasters" EntityType="Self.EmployeeMaster" />
+    <EntitySet Name="ImportTrackers" EntityType="Self.ImportTracker" />
+    <EntitySet Name="Positions" EntityType="Self.Position" />
+    <EntitySet Name="Sites" EntityType="Self.Site" />
+    <EntitySet Name="tb_appraisal" EntityType="Self.tb_appraisal" />
+    <EntitySet Name="tb_attendance" EntityType="Self.tb_attendance" />
+    <EntitySet Name="tb_attendance_attachment" EntityType="Self.tb_attendance_attachment" />
+    <EntitySet Name="tb_customer" EntityType="Self.tb_customer" />
+    <EntitySet Name="tb_Department" EntityType="Self.tb_Department" />
+    <EntitySet Name="tb_file" EntityType="Self.tb_file" />
+    <EntitySet Name="tb_fingerprint" EntityType="Self.tb_fingerprint" />
+    <EntitySet Name="tb_generate_type" EntityType="Self.tb_generate_type" />
+    <EntitySet Name="tb_Group_Position" EntityType="Self.tb_Group_Position" />
+    <EntitySet Name="tb_OT" EntityType="Self.tb_OT" />
+    <EntitySet Name="tb_OT_Detail" EntityType="Self.tb_OT_Detail" />
+    <EntitySet Name="tb_Payroll" EntityType="Self.tb_Payroll" />
+    <EntitySet Name="tb_PayrollDetail" EntityType="Self.tb_PayrollDetail" />
+    <EntitySet Name="tb_Project" EntityType="Self.tb_Project" />
+    <EntitySet Name="tb_province" EntityType="Self.tb_province" />
+    <EntitySet Name="tb_PublicHoliday" EntityType="Self.tb_PublicHoliday" />
+    <EntitySet Name="TimeSchedules" EntityType="Self.TimeSchedule" />
+    <EntitySet Name="AggregatedCounters" EntityType="Self.AggregatedCounter" />
+    <EntitySet Name="Counters" EntityType="Self.Counter" />
+    <EntitySet Name="Hashes" EntityType="Self.Hash" />
+    <EntitySet Name="Jobs" EntityType="Self.Job" />
+    <EntitySet Name="JobParameters" EntityType="Self.JobParameter" />
+    <EntitySet Name="JobQueues" EntityType="Self.JobQueue" />
+    <EntitySet Name="Lists" EntityType="Self.List" />
+    <EntitySet Name="Schemata" EntityType="Self.Schema" />
+    <EntitySet Name="Servers" EntityType="Self.Server" />
+    <EntitySet Name="Sets" EntityType="Self.Set" />
+    <EntitySet Name="States" EntityType="Self.State" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="fk_con_pos" Association="Self.fk_con_pos">
+      <End Role="Position" EntitySet="Positions" />
+      <End Role="Contract" EntitySet="Contracts" />
+    </AssociationSet>
+    <AssociationSet Name="fk_emp_contract" Association="Self.fk_emp_contract">
+      <End Role="EmployeeMaster" EntitySet="EmployeeMasters" />
+      <End Role="Contract" EntitySet="Contracts" />
+    </AssociationSet>
+    <AssociationSet Name="fk_site_con" Association="Self.fk_site_con">
+      <End Role="Site" EntitySet="Sites" />
+      <End Role="Contract" EntitySet="Contracts" />
+    </AssociationSet>
+    <AssociationSet Name="fk_department_emp" Association="Self.fk_department_emp">
+      <End Role="tb_Department" EntitySet="tb_Department" />
+      <End Role="EmployeeMaster" EntitySet="EmployeeMasters" />
+    </AssociationSet>
+    <AssociationSet Name="fk_emp_ot" Association="Self.fk_emp_ot">
+      <End Role="EmployeeMaster" EntitySet="EmployeeMasters" />
+      <End Role="tb_OT_Detail" EntitySet="tb_OT_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="fk_emp_payroll" Association="Self.fk_emp_payroll">
+      <End Role="EmployeeMaster" EntitySet="EmployeeMasters" />
+      <End Role="tb_Payroll" EntitySet="tb_Payroll" />
+    </AssociationSet>
+    <AssociationSet Name="fk_emp_pro" Association="Self.fk_emp_pro">
+      <End Role="tb_province" EntitySet="tb_province" />
+      <End Role="EmployeeMaster" EntitySet="EmployeeMasters" />
+    </AssociationSet>
+    <AssociationSet Name="fk_user_file" Association="Self.fk_user_file">
+      <End Role="EmployeeMaster" EntitySet="EmployeeMasters" />
+      <End Role="tb_file" EntitySet="tb_file" />
+    </AssociationSet>
+    <AssociationSet Name="fk_gp_p" Association="Self.fk_gp_p">
+      <End Role="tb_Group_Position" EntitySet="tb_Group_Position" />
+      <End Role="Position" EntitySet="Positions" />
+    </AssociationSet>
+    <AssociationSet Name="fk_pro_site" Association="Self.fk_pro_site">
+      <End Role="tb_Project" EntitySet="tb_Project" />
+      <End Role="Site" EntitySet="Sites" />
+    </AssociationSet>
+    <AssociationSet Name="fk_site_province" Association="Self.fk_site_province">
+      <End Role="tb_province" EntitySet="tb_province" />
+      <End Role="Site" EntitySet="Sites" />
+    </AssociationSet>
+    <AssociationSet Name="fk_ot_pa" Association="Self.fk_ot_pa">
+      <End Role="tb_OT" EntitySet="tb_OT" />
+      <End Role="tb_appraisal" EntitySet="tb_appraisal" />
+    </AssociationSet>
+    <AssociationSet Name="fk_ot_otdetail" Association="Self.fk_ot_otdetail">
+      <End Role="tb_OT" EntitySet="tb_OT" />
+      <End Role="tb_OT_Detail" EntitySet="tb_OT_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="fk_payrolldetail_payroll" Association="Self.fk_payrolldetail_payroll">
+      <End Role="tb_PayrollDetail" EntitySet="tb_PayrollDetail" />
+      <End Role="tb_Payroll" EntitySet="tb_Payroll" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HangFire_JobParameter_Job" Association="Self.FK_HangFire_JobParameter_Job">
+      <End Role="Job" EntitySet="Jobs" />
+      <End Role="JobParameter" EntitySet="JobParameters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HangFire_State_Job" Association="Self.FK_HangFire_State_Job">
+      <End Role="Job" EntitySet="Jobs" />
+      <End Role="State" EntitySet="States" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

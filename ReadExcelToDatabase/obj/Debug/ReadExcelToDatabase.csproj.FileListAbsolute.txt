@@ -1,0 +1,13 @@
+D:\My Project\ReadExcelToDatabase\ReadExcelToDatabase\bin\Debug\ReadExcelToDatabase.exe.config
+D:\My Project\ReadExcelToDatabase\ReadExcelToDatabase\bin\Debug\ReadExcelToDatabase.exe
+D:\My Project\ReadExcelToDatabase\ReadExcelToDatabase\bin\Debug\ReadExcelToDatabase.pdb
+D:\My Project\ReadExcelToDatabase\ReadExcelToDatabase\obj\Debug\ReadExcelToDatabase.csprojResolveAssemblyReference.cache
+D:\My Project\ReadExcelToDatabase\ReadExcelToDatabase\obj\Debug\ReadExcelToDatabase.Form1.resources
+D:\My Project\ReadExcelToDatabase\ReadExcelToDatabase\obj\Debug\ReadExcelToDatabase.Properties.Resources.resources
+D:\My Project\ReadExcelToDatabase\ReadExcelToDatabase\obj\Debug\ReadExcelToDatabase.csproj.GenerateResource.Cache
+D:\My Project\ReadExcelToDatabase\ReadExcelToDatabase\obj\Debug\ReadExcelToDatabase.exe
+D:\My Project\ReadExcelToDatabase\ReadExcelToDatabase\obj\Debug\ReadExcelToDatabase.pdb
+D:\My Project\ReadExcelToDatabase\ReadExcelToDatabase\bin\Debug\EntityFramework.dll
+D:\My Project\ReadExcelToDatabase\ReadExcelToDatabase\bin\Debug\EntityFramework.SqlServer.dll
+D:\My Project\ReadExcelToDatabase\ReadExcelToDatabase\bin\Debug\EntityFramework.xml
+D:\My Project\ReadExcelToDatabase\ReadExcelToDatabase\bin\Debug\EntityFramework.SqlServer.xml

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9ea769bf602b4fab91e4b218b3f0bd10" Name="Diagram1">
+        <EntityTypeShape EntityType="AttendanceModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.AspNetRole" Width="1.5" PointX="10.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.AspNetUserClaim" Width="1.5" PointX="15.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.AspNetUserLogin" Width="1.5" PointX="15.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.AspNetUser" Width="1.5" PointX="13" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.Contract" Width="1.5" PointX="8.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.EmployeeMaster" Width="1.5" PointX="6" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.Position" Width="1.5" PointX="6" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.Site" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.tb_appraisal" Width="1.5" PointX="11.25" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.tb_attendance" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.tb_attendance_attachment" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.tb_customer" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.tb_Department" Width="1.5" PointX="3.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.tb_file" Width="1.5" PointX="8.25" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.tb_fingerprint" Width="1.5" PointX="13.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.tb_generate_type" Width="1.5" PointX="0.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.tb_Group_Position" Width="1.5" PointX="3.75" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.tb_OT" Width="1.5" PointX="9" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.tb_OT_Detail" Width="1.5" PointX="11.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.tb_Payroll" Width="1.5" PointX="8.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.tb_PayrollDetail" Width="1.5" PointX="6" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.tb_Project" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.tb_province" Width="1.5" PointX="0.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.tb_PublicHoliday" Width="1.5" PointX="10.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.TimeSchedule" Width="1.5" PointX="2.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.AggregatedCounter" Width="1.5" PointX="15.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.Counter" Width="1.5" PointX="17.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.Hash" Width="1.5" PointX="17.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.Job" Width="1.5" PointX="13.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.JobParameter" Width="1.5" PointX="16" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.JobQueue" Width="1.5" PointX="17.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.List" Width="1.5" PointX="15.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.Schema" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.Server" Width="1.5" PointX="17.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.Set" Width="1.5" PointX="0.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendanceModel.State" Width="1.5" PointX="16" PointY="10.75" IsExpanded="true" />
+        <AssociationConnector Association="AttendanceModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendanceModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendanceModel.fk_con_pos" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendanceModel.fk_emp_contract" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendanceModel.fk_site_con" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendanceModel.fk_department_emp" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendanceModel.fk_emp_ot" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendanceModel.fk_emp_payroll" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendanceModel.fk_emp_pro" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendanceModel.fk_user_file" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendanceModel.fk_gp_p" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendanceModel.fk_pro_site" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendanceModel.fk_site_province" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendanceModel.fk_ot_pa" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendanceModel.fk_ot_otdetail" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendanceModel.fk_payrolldetail_payroll" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendanceModel.FK_HangFire_JobParameter_Job" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendanceModel.FK_HangFire_State_Job" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendanceModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
